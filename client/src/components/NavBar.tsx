@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -22,11 +22,11 @@ export default function Navbar() {
   }, [menuOpen]);
 
   const NavLinks = [
-    { to: "/", label: "Home" },
-    { to: "/services", label: "Services" },
-    { to: "/about", label: "About" },
-    { to: "/gallery", label: "Gallery" },
-    { to: "/support", label: "Support" },
+    { to: "/", label: "HOME" },
+    { to: "/services", label: "SERVICES" },
+    { to: "/about", label: "ABOUT" },
+    { to: "/gallery", label: "GALLERY" },
+    { to: "/support", label: "SUPPORT" },
   ];
 
   return (
@@ -44,12 +44,14 @@ export default function Navbar() {
         }
       `}
     >
-      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-6 py-3">
+      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-8 py-3">
         {/* Logo */}
-        <span className="text-white text-2xl md:text-3xl font-bold tracking-wide z-[2000]">
-          <span className="text-[#00f0ff]">RPM </span>
-          <span className="text-[#9d9c9e]">NYC</span>
-        </span>
+        <Link to="/">
+          <span className="relative font-bold tracking-wide z-[2000]">
+            <span className="text-3xl text-[#14007e] italic">RPM </span>
+            <span className="text-xl text-[#9d9d9b] font-rocksalt">nyc</span>
+          </span>
+        </Link>
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-10">
@@ -62,10 +64,10 @@ export default function Navbar() {
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  `transition-colors duration-300 ${
+                  `inline-block transition-all duration-300 ease-in-out ${
                     isActive
-                      ? "text-[#00f0ff] font-semibold"
-                      : "text-gray-300 hover:text-white hover:font-semibold"
+                      ? "text-[#00f0ff]"
+                      : "text-gray-300 hover:scale-110"
                   }`
                 }
               >
