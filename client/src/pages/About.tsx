@@ -47,15 +47,7 @@ export default function About() {
   return (
     <div className="text-white overflow-x-hidden">
       {/* ── PAGE HEADER ── */}
-      <div className="relative pt-44 pb-20 px-8 md:px-16 overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
+      <div className="relative pt-36 pb-20 px-8 md:px-16 overflow-hidden">
         <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[260px] bg-[#00f0ff]/8 blur-[120px] rounded-full" />
 
         <div className="relative max-w-[1400px] mx-auto">
@@ -172,7 +164,7 @@ export default function About() {
       </section>
 
       {/* ── VALUES ── */}
-      <section className="border-t border-white/[0.06] bg-[#0c0c0c]">
+      <section className="border-t border-b border-white/[0.06] bg-[#0c0c0c]">
         <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-28">
           <motion.div
             initial="hidden"
