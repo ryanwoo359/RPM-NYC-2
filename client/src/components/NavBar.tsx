@@ -1,6 +1,14 @@
 import { NavLink, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+
+const NAV_LINKS = [
+  { to: "/", label: "HOME", end: true },
+  { to: "/services", label: "SERVICES" },
+  { to: "/about", label: "ABOUT" },
+  { to: "/gallery", label: "GALLERY" },
+  { to: "/support", label: "SUPPORT" },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -8,26 +16,24 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 Lock body scroll when menu is open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
-  const NavLinks = [
-    { to: "/", label: "HOME" },
-    { to: "/services", label: "SERVICES" },
-    { to: "/about", label: "ABOUT" },
-    { to: "/gallery", label: "GALLERY" },
-    { to: "/support", label: "SUPPORT" },
-  ];
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
 
   return (
     <motion.nav
@@ -39,12 +45,12 @@ export default function Navbar() {
           menuOpen
             ? "bg-black/90 backdrop-blur-lg shadow-md"
             : scrolled
-            ? "bg-black/70 backdrop-blur-md shadow-md"
+            ? "bg-black/40 backdrop-blur-md shadow-md"
             : "bg-transparent"
         }
       `}
     >
-      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-8 py-3">
+      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-4 py-3 md:px-24">
         {/* Logo */}
         <Link to="/">
           <span className="relative font-bold tracking-wide z-[2000]">
@@ -54,8 +60,8 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-10">
-          {NavLinks.map((link) => (
+        <ul className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((link) => (
             <motion.li
               key={link.to}
               whileHover={{ scale: 1.05 }}
@@ -63,11 +69,10 @@ export default function Navbar() {
             >
               <NavLink
                 to={link.to}
+                end={link.end}
                 className={({ isActive }) =>
-                  `inline-block transition-all duration-300 ease-in-out ${
-                    isActive
-                      ? "text-[#00f0ff]"
-                      : "text-gray-300 hover:scale-110"
+                  `inline-block transition-colors duration-300 ease-in-out ${
+                    isActive ? "text-[#00f0ff]" : "text-gray-300"
                   }`
                 }
               >
@@ -79,80 +84,60 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-white z-[2000] relative"
+          className="md:hidden flex flex-col justify-center items-center w-8 h-8 z-[2000] relative"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? (
-            // Close Icon
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-8 h-8"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            // Hamburger Icon
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-8 h-8"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
+          <span
+            className={`block w-7 h-0.5 bg-white transition-all duration-300 origin-center ${
+              menuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
+          />
+          <span
+            className={`block w-7 h-0.5 bg-white my-1.5 transition-all duration-300 ${
+              menuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block w-7 h-0.5 bg-white transition-all duration-300 origin-center ${
+              menuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          />
         </button>
       </div>
 
-      {/* FULLSCREEN MOBILE MENU */}
-      <motion.div
-        initial={false}
-        animate={menuOpen ? "open" : "closed"}
-        variants={{
-          open: { opacity: 1, pointerEvents: "auto" },
-          closed: { opacity: 0, pointerEvents: "none" },
-        }}
-        transition={{ duration: 0.3 }}
-        className="
-          fixed top-0 left-0 w-full h-screen
-          bg-black/90 backdrop-blur-lg
-          flex flex-col items-center justify-center
-          gap-10
-          md:hidden
-          z-[999]
-        "
-      >
-        {NavLinks.map((link) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            onClick={() => setMenuOpen(false)}
-            className={({ isActive }) =>
-              `text-3xl transition-colors duration-300 ${
-                isActive
-                  ? "text-[#00f0ff] font-semibold"
-                  : "text-gray-300 hover:text-white hover:font-semibold"
-              }`
-            }
+      {/* Fullscreen Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-0 left-0 w-full h-screen bg-black/90 backdrop-blur-lg flex flex-col items-center justify-center gap-10 md:hidden z-[999]"
           >
-            {link.label}
-          </NavLink>
-        ))}
-      </motion.div>
+            {NAV_LINKS.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.end}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `text-3xl transition-colors duration-300 ${
+                    isActive
+                      ? "text-[#00f0ff] font-semibold"
+                      : "text-gray-300 hover:text-white hover:font-semibold"
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
