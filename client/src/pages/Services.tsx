@@ -2,6 +2,20 @@ import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 
+// Diagnostics & Tuning
+import ecuTuning from "../assets/service-img/ecu-tuning.png";
+import dynoTuning from "../assets/service-img/dyno-tuning.png";
+import coolingSystem from "../assets/service-img/cooling-system.png";
+
+// Repairs
+import radCooling from "../assets/service-img/rad-cooling.png";
+
+// Suspension
+import wheelAlignment from "../assets/service-img/wheel-alignment.png";
+
+// Placeholder for missing images
+import person from "../assets/service-img/Person.png";
+
 const serviceCategories = [
   {
     id: "diagnostics",
@@ -11,21 +25,21 @@ const serviceCategories = [
     services: [
       {
         title: "ECU Diagnostics",
-        image: "ecu-tuning.png",
+        image: ecuTuning,
         description:
           "Full OBD-II scanning and fault code analysis across all modules.",
         link: "#",
       },
       {
         title: "Dyno Tuning",
-        image: "dyno-tuning.png",
+        image: dynoTuning,
         description:
           "Custom power maps optimized for your engine build and fuel.",
         link: "#",
       },
       {
         title: "General Maintenance",
-        image: "cooling-system.png",
+        image: coolingSystem,
         description:
           "Oil, filters, fluids — factory intervals or custom schedules.",
         link: "#",
@@ -40,21 +54,21 @@ const serviceCategories = [
     services: [
       {
         title: "Engine Repair",
-        image: "Person.png",
+        image: person,
         description:
           "From head gaskets to full rebuilds on domestic and import engines.",
         link: "#",
       },
       {
         title: "Electrical & Wiring",
-        image: "Person.png",
+        image: person,
         description:
           "Tracing shorts, harness repairs, and custom wiring solutions.",
         link: "#",
       },
       {
         title: "Cooling System",
-        image: "rad-cooling.png",
+        image: radCooling,
         description: "Radiator, thermostat, water pump — keep temps in check.",
         link: "#",
       },
@@ -68,21 +82,21 @@ const serviceCategories = [
     services: [
       {
         title: "Coilover Install",
-        image: "Person.png",
+        image: person,
         description:
           "Street and track coilover fitting with corner-weight setup.",
         link: "#",
       },
       {
         title: "Big Brake Kits",
-        image: "Person.png",
+        image: person,
         description:
           "Upgraded rotors, calipers, and pads for serious stopping power.",
         link: "#",
       },
       {
         title: "Alignment",
-        image: "wheel-alignment.png",
+        image: wheelAlignment,
         description: "4-wheel alignment with custom camber and toe settings.",
         link: "#",
       },
@@ -96,20 +110,20 @@ const serviceCategories = [
     services: [
       {
         title: "Turbo & Supercharger",
-        image: "Person.png",
+        image: person,
         description:
           "Forced induction installs and full boost management systems.",
         link: "#",
       },
       {
         title: "Transmission Service",
-        image: "Person.png",
+        image: person,
         description: "Manual, auto, and DCT servicing, rebuilds, and swaps.",
         link: "#",
       },
       {
         title: "Differential Work",
-        image: "Person.png",
+        image: person,
         description: "LSD installs, fluid changes, and differential rebuilds.",
         link: "#",
       },
@@ -123,20 +137,20 @@ const serviceCategories = [
     services: [
       {
         title: "Cat-Back Exhaust",
-        image: "Person.png",
+        image: person,
         description: "Performance cat-back systems for maximum flow and tone.",
         link: "#",
       },
       {
         title: "Custom Fabrication",
-        image: "Person.png",
+        image: person,
         description:
           "One-off stainless exhaust built specifically for your chassis.",
         link: "#",
       },
       {
         title: "Headers & Downpipes",
-        image: "Person.png",
+        image: person,
         description: "Upgrade your manifold for better scavenging and power.",
         link: "#",
       },
@@ -150,20 +164,20 @@ const serviceCategories = [
     services: [
       {
         title: "Tire Mounting & Balancing",
-        image: "Person.png",
+        image: person,
         description: "Road-force balancing for a vibration-free, smooth ride.",
         link: "#",
       },
       {
         title: "Wheel Spacers",
-        image: "Person.png",
+        image: person,
         description:
           "Hub-centric spacers installed safely with extended studs.",
         link: "#",
       },
       {
         title: "TPMS Service",
-        image: "Person.png",
+        image: person,
         description: "Sensor replacement, reprogramming, and system resets.",
         link: "#",
       },
@@ -177,21 +191,21 @@ const serviceCategories = [
     services: [
       {
         title: "Paint Protection Film",
-        image: "Person.png",
+        image: person,
         description:
           "Self-healing PPF on high-impact zones or full-body wraps.",
         link: "#",
       },
       {
         title: "Ceramic Coating",
-        image: "Person.png",
+        image: person,
         description:
           "Nano-ceramic protection with years of hydrophobic brilliance.",
         link: "#",
       },
       {
         title: "Window Tint",
-        image: "Person.png",
+        image: person,
         description: "Precision-cut film with heat rejection and UV blocking.",
         link: "#",
       },
@@ -205,21 +219,21 @@ const serviceCategories = [
     services: [
       {
         title: "Roll Cage & Bars",
-        image: "Person.png",
+        image: person,
         description:
           "DOM tubing cages and half cages for track and safety use.",
         link: "#",
       },
       {
         title: "Custom Brackets & Mounts",
-        image: "Person.png",
+        image: person,
         description:
           "One-off fabricated solutions for engine swaps and builds.",
         link: "#",
       },
       {
         title: "Intercooler Piping",
-        image: "Person.png",
+        image: person,
         description: "Mandrel-bent charge piping in aluminum or stainless.",
         link: "#",
       },
@@ -255,7 +269,7 @@ export default function Services() {
           initial={{ opacity: 0, letterSpacing: "0.4em" }}
           animate={{ opacity: 1, letterSpacing: "0.25em" }}
           transition={{ duration: 0.8 }}
-          className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono"
+          className="text-[#00f0ff] text-xs uppercase text-center md:text-left tracking-[0.25em] mb-4 font-mono"
         >
           RPM NYC — Full Service Auto Shop
         </motion.p>
@@ -350,7 +364,7 @@ export default function Services() {
         </h2>
         <Link
           to="/support"
-          className="inline-block border border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff] hover:text-black transition-colors duration-300 uppercase tracking-widest text-xs font-bold px-10 py-4"
+          className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
         >
           Contact Us
         </Link>

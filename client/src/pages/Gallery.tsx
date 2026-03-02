@@ -1,5 +1,16 @@
 import { motion, type Variants } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import picture from "../assets/gallery/picture.jpg";
+import unclecar from "../assets/gallery/unclecar.jpg";
+import blackcar from "../assets/gallery/blackcar.jpg";
+import suspension from "../assets/gallery/suspension.jpg";
+import fabrication from "../assets/gallery/fabrication.jpg";
+import picture2 from "../assets/gallery/picture2.jpg";
+import whitegtr from "../assets/gallery/whitegtr.jpg";
+import purpleCar from "../assets/gallery/purple_car.jpg";
+import work from "../assets/gallery/work.jpg";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32, scale: 0.97 },
@@ -19,41 +30,20 @@ type GalleryItem = {
 };
 
 const items: GalleryItem[] = [
+  { src: picture, alt: "Featured build", tag: "Full Build", span: "wide" },
+  { src: unclecar, alt: "Uncle's car", tag: "Custom" },
+  { src: blackcar, alt: "Black Car", tag: "Aesthetic", span: "tall" },
+  { src: suspension, alt: "Suspension work", tag: "Suspension" },
   {
-    src: "picture.jpg",
-    alt: "Featured build",
-    tag: "Full Build",
-    span: "wide",
-  },
-  { src: "unclecar.jpg", alt: "Uncle's car", tag: "Custom" },
-  {
-    src: "blackcar.jpg",
-    alt: "Black Car",
-    tag: "Aesthetic",
-    span: "tall",
-  },
-  {
-    src: "suspension.jpg",
-    alt: "Suspension work",
-    tag: "Suspension",
-  },
-  {
-    src: "fabrication.jpg",
+    src: fabrication,
     alt: "Fabrication work",
     tag: "Fabrication",
-  },
-  {
-    src: "picture2.jpg",
-    alt: "Project car",
-    tag: "Performance",
     span: "large",
   },
-  {
-    src: "whitegtr.jpg",
-    alt: "White GTR",
-    tag: "Aesthetic",
-    span: "tall",
-  },
+  { src: picture2, alt: "Project car", tag: "Performance" },
+  { src: whitegtr, alt: "White GTR", tag: "Aesthetic", span: "tall" },
+  { src: purpleCar, alt: "Purple car", tag: "Aesthetic" },
+  { src: work, alt: "Shop work", tag: "Aesthetic" },
 ];
 
 const spanClass: Record<string, string> = {
@@ -65,21 +55,52 @@ const spanClass: Record<string, string> = {
 export default function Gallery() {
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
 
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
   return (
     <div className="text-white overflow-x-hidden">
-      {/* ── PAGE HEADER ── */}
-      <div className="relative pt-44 pb-20 px-8 md:px-16 overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
-        <div className="pointer-events-none absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[260px] bg-[#00f0ff]/8 blur-[120px] rounded-full" />
+      <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00f0ff]/10 blur-[120px] rounded-full" />
 
-        <div className="relative max-w-[1400px] mx-auto">
+        <motion.p
+          initial={{ opacity: 0, letterSpacing: "0.4em" }}
+          animate={{ opacity: 1, letterSpacing: "0.25em" }}
+          transition={{ duration: 0.8 }}
+          className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono"
+        >
+          Our Work
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter"
+          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+        >
+          Featured <span className="text-[#00f0ff]">Builds</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide"
+        >
+          A selection of builds, restorations, and upgrades that left our shop
+          ready to perform.
+        </motion.p>
+      </div>
+      {/* ── PAGE HEADER ── */}
+      {/* <div className="relative pt-44 pb-20 px-8 md:px-16 overflow-hidden">
+        <div className="pointer-events-none absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[260px] bg-[#00f0ff]/8 blur-[120px] rounded-full" />
+        <div className="relative max-w-[1400px] mx-auto md:px-16">
           <motion.p
             initial={{ opacity: 0, letterSpacing: "0.5em" }}
             animate={{ opacity: 1, letterSpacing: "0.22em" }}
@@ -107,7 +128,7 @@ export default function Gallery() {
             ready to perform.
           </motion.p>
         </div>
-      </div>
+      </div> */}
 
       {/* ── GRID ── */}
       <div className="max-w-[1400px] mx-auto px-4 md:px-16 pb-32">
@@ -230,15 +251,15 @@ export default function Gallery() {
           >
             Your Build Could Be <span className="text-[#00f0ff]">Next.</span>
           </h2>
-          <a
-            href="/support"
+          <Link
+            to="/support"
             className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
           >
             Book a Service
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>
