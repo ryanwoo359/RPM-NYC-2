@@ -1,5 +1,9 @@
 import { motion, type Variants } from "framer-motion";
 import Card from "../components/Card";
+import { Link } from "react-router-dom";
+
+import employee1 from "../assets/employee/3D7A5288-2.jpg";
+import employee2 from "../assets/employee/3D7A5290-2.jpg";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 36 },
@@ -33,24 +37,58 @@ const team = [
     title: "John Doe",
     role: "Lead Technician",
     description: "Specializes in European imports and advanced diagnostics.",
-    image: "./employee/3D7A5288-2.jpg",
+    image: employee1,
   },
   {
     title: "John Doe",
     role: "Performance Specialist",
     description: "Focuses on engine tuning and custom mods.",
-    image: "./employee/3D7A5290-2.jpg",
+    image: employee2,
   },
 ];
 
 export default function About() {
   return (
     <div className="text-white overflow-x-hidden">
+      <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00f0ff]/10 blur-[120px] rounded-full" />
+
+        <motion.p
+          initial={{ opacity: 0, letterSpacing: "0.4em" }}
+          animate={{ opacity: 1, letterSpacing: "0.25em" }}
+          transition={{ duration: 0.8 }}
+          className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono"
+        >
+          Who we are
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter"
+          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+        >
+          About <span className="text-[#00f0ff]">RPM</span>
+          <span className="font-rocksalt text-[#9d9d9b] text-4xl md:text-5xl ml-3">
+            nyc
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide"
+        >
+          A team built on precision, passion, and performance.
+        </motion.p>
+      </div>
       {/* ── PAGE HEADER ── */}
-      <div className="relative pt-36 pb-20 px-8 md:px-16 overflow-hidden">
+      {/* <div className="relative pt-36 pb-20 px-8 md:px-16 overflow-hidden">
         <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[260px] bg-[#00f0ff]/8 blur-[120px] rounded-full" />
 
-        <div className="relative max-w-[1400px] mx-auto">
+        <div className="relative max-w-[1400px] mx-auto md:px-16">
           <motion.p
             initial={{ opacity: 0, letterSpacing: "0.5em" }}
             animate={{ opacity: 1, letterSpacing: "0.22em" }}
@@ -72,7 +110,7 @@ export default function About() {
             </span>
           </motion.h1>
         </div>
-      </div>
+      </div> */}
 
       {/* ── OUR STORY ── */}
       <section className="max-w-[1400px] mx-auto px-8 md:px-16 pb-32">
@@ -279,15 +317,15 @@ export default function About() {
           >
             Let's Work on <span className="text-[#00f0ff]">Your Car.</span>
           </h2>
-          <a
-            href="/support"
+          <Link
+            to="/support"
             className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
           >
             Book a Service
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>
