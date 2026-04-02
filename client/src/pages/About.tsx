@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import employee1 from "../assets/employee/3D7A5288-2.jpg";
 import employee2 from "../assets/employee/3D7A5290-2.jpg";
+import storeFront from "../assets/gallery/rpm-storefront.webp";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 36 },
@@ -125,8 +126,8 @@ export default function About() {
           >
             <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent" />
             <img
-              src="rpm motors.jpg"
-              alt="RPM NYC shop"
+              src={storeFront}
+              alt="RPM NYC store front"
               className="relative rounded-2xl w-full h-auto object-cover"
               draggable="false"
             />
