@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="text-white overflow-x-hidden">
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative min-h-[100dvh] flex items-center">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           src="/GTR drive.mp4"
@@ -115,13 +115,13 @@ export default function Home() {
           >
             <Link
               to="/support"
-              className="group/button relative inline-flex items-center justify-center overflow-hidden rounded-md bg-gray-800/30 backdrop-blur-lg px-8 py-3.5 text-white transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-gray-600/50 border border-white/20 cursor-pointer"
+              className="group/button relative inline-flex items-center justify-center overflow-hidden rounded-md bg-cyan-400 px-8 py-3.5 text-black transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-cyan-400/50 border border-white/20 cursor-pointer"
             >
               <span className="text-xs font-bold uppercase tracking-widest">
                 Contact us
               </span>
               <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]">
-                <div className="relative h-full w-10 bg-white/20"></div>
+                <div className="relative h-full w-10 bg-white/30"></div>
               </div>
             </Link>
 
@@ -215,7 +215,7 @@ export default function Home() {
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeUp}
-        className="border-y border-white/[0.06] bg-white/[0.02] py-10 px-8 md:px-16"
+        className="border-y border-white/[0.06] bg-gray-700/[0.7] py-10 px-8 md:px-16 bg-white/[0.02]"
       >
         <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
