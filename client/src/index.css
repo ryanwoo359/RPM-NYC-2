@@ -5,10 +5,11 @@
   --font-rocksalt: "Rock Salt", cursive;
 }
 
+html,
 body {
   margin: 0;
   height: 100%;
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(8, 8, 8);
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 1),
