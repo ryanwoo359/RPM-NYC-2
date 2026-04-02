@@ -2,15 +2,15 @@ import { motion, type Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import picture from "../assets/gallery/picture.jpg";
-import unclecar from "../assets/gallery/unclecar.jpg";
-import blackcar from "../assets/gallery/blackcar.jpg";
-import suspension from "../assets/gallery/suspension.jpg";
-import fabrication from "../assets/gallery/fabrication.jpg";
-import picture2 from "../assets/gallery/picture2.jpg";
-import whitegtr from "../assets/gallery/whitegtr.jpg";
-import purpleCar from "../assets/gallery/purple_car.jpg";
-import work from "../assets/gallery/work.jpg";
+import picture from "../assets/gallery/picture.webp";
+import unclecar from "../assets/gallery/unclecar.webp";
+import blackcar from "../assets/gallery/blackcar.webp";
+import suspension from "../assets/gallery/suspension.webp";
+import fabrication from "../assets/gallery/fabrication.webp";
+import picture2 from "../assets/gallery/picture2.webp";
+import whitegtr from "../assets/gallery/whitegtr.webp";
+import purpleCar from "../assets/gallery/purple_car.webp";
+import work from "../assets/gallery/work.webp";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32, scale: 0.97 },
@@ -150,6 +150,8 @@ export default function Gallery() {
               <motion.img
                 src={item.src}
                 alt={item.alt}
+                decoding="async"
+                loading="lazy"
                 draggable="false"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -209,6 +211,9 @@ export default function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
+              decoding="async"
+              loading="lazy"
+              draggable="false"
               src={lightbox.src}
               alt={lightbox.alt}
               className="w-full max-h-[80vh] object-contain rounded-xl"
