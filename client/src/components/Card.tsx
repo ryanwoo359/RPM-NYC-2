@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type BaseCardProps = {
   title: string;
   image: string;
@@ -26,6 +28,8 @@ function ServiceCard({ title, description, image, link }: ServiceCardProps) {
         <img
           src={image}
           alt={title}
+          decoding="async"
+          loading="lazy"
           draggable="false"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
@@ -49,15 +53,15 @@ function ServiceCard({ title, description, image, link }: ServiceCardProps) {
         )}
 
         {link && (
-          <a
-            href={link}
+          <Link
+            to={link}
             className="group/link mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00f0ff] transition-opacity hover:opacity-75"
           >
             Learn More
             <span className="transition-transform duration-300 group-hover/link:translate-x-1">
               →
             </span>
-          </a>
+          </Link>
         )}
       </div>
     </div>
@@ -72,6 +76,8 @@ function EmployeeCard({ title, description, image, role }: EmployeeCardProps) {
         <img
           src={image}
           alt={title}
+          decoding="async"
+          loading="lazy"
           draggable="false"
           className="absolute inset-0 h-full w-full object-cover"
         />
