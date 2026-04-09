@@ -2,8 +2,9 @@ import { motion, type Variants } from "framer-motion";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
-import employee1 from "../assets/employee/3D7A5288-2.jpg";
-import employee2 from "../assets/employee/3D7A5290-2.jpg";
+import employee1 from "../assets/employee/3D7A5288-2.webp";
+import employee2 from "../assets/employee/3D7A5290-2.webp";
+import tommie from "../assets/employee/tommie.webp";
 import storeFront from "../assets/gallery/rpm-storefront.webp";
 
 const fadeUp: Variants = {
@@ -34,6 +35,12 @@ const values = [
 ];
 
 const team = [
+  {
+    title: "Tommie",
+    role: "Boss",
+    description: "Supervises RPM",
+    image: tommie,
+  },
   {
     title: "John Doe",
     role: "Lead Technician",
