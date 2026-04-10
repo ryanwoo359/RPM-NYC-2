@@ -97,44 +97,12 @@ export default function Gallery() {
           ready to perform.
         </motion.p>
       </div>
-      {/* ── PAGE HEADER ── */}
-      {/* <div className="relative pt-44 pb-20 px-8 md:px-16 overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[260px] bg-[#00f0ff]/8 blur-[120px] rounded-full" />
-        <div className="relative max-w-[1400px] mx-auto md:px-16">
-          <motion.p
-            initial={{ opacity: 0, letterSpacing: "0.5em" }}
-            animate={{ opacity: 1, letterSpacing: "0.22em" }}
-            transition={{ duration: 0.9 }}
-            className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-4"
-          >
-            Our Work
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Featured <span className="text-[#00f0ff]">Builds</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-4 text-gray-400 text-sm max-w-lg"
-          >
-            A selection of builds, restorations, and upgrades that left our shop
-            ready to perform.
-          </motion.p>
-        </div>
-      </div> */}
 
       {/* ── GRID ── */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-16 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows md:auto-rows-[220px] gap-3 md:grid-flow-dense">
+      <div className="max-w-[90vw] mx-auto px-4 md:px-16 pb-32">
+        <ul className="grid grid-cols-1 md:grid-cols-4 auto-rows md:auto-rows-[220px] gap-3 md:grid-flow-dense">
           {items.map((item, i) => (
-            <motion.div
+            <motion.li
               key={`${item.src}-${item.alt}-${i}`}
               initial="hidden"
               whileInView="visible"
@@ -189,9 +157,9 @@ export default function Gallery() {
                   </svg>
                 </div>
               </div>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
 
       {/* ── LIGHTBOX ── */}
