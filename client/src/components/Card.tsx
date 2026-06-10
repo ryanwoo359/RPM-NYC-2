@@ -69,7 +69,7 @@ function ServiceCard({ title, description, image, link }: ServiceCardProps) {
   );
 }
 
-function EmployeeCard({ title, description, image, role }: EmployeeCardProps) {
+function EmployeeCard({ title, image, role }: EmployeeCardProps) {
   return (
     <div className="group relative w-full overflow-hidden bg-[#0f0f0f]">
       {/* Image — rendered in black & white */}
@@ -100,11 +100,6 @@ function EmployeeCard({ title, description, image, role }: EmployeeCardProps) {
             {role}
           </p>
         )}
-        {/* {description && (
-          <p className="mt-2 text-center text-xs text-gray-300 sm:text-sm">
-            {description}
-          </p>
-        )} */}
       </div>
     </div>
   );
