@@ -429,17 +429,17 @@ function Field({
 }
 
 function MapPinIcon() {
-  return <img src="location.svg" className="w-4 h-4" />;
+  return <img draggable="false" src="location.svg" className="w-4 h-4" />;
 }
 
 function PhoneIcon() {
-  return <img src="phone.svg" className="w-4 h-4" />;
+  return <img draggable="false" src="phone.svg" className="w-4 h-4" />;
 }
 
 function ClockIcon() {
-  return <img src="clock.svg" className="w-4 h-4" />;
+  return <img draggable="false" src="clock.svg" className="w-4 h-4" />;
 }
 
 function StarIcon() {
-  return <img src="heart.svg" className="w-4 h-4" />;
+  return <img draggable="false" src="heart.svg" className="w-4 h-4" />;
 }

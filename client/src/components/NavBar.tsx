@@ -50,7 +50,7 @@ export default function Navbar() {
         }
       `}
     >
-      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-4 py-3 md:px-24">
+      <div className="max-w-[95vw] mx-auto flex items-center justify-between px-4 py-3 md:px-24">
         {/* Logo */}
         <Link to="/">
           <span className="relative font-bold tracking-wide z-[2000]">

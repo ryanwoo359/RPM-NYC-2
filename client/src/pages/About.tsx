@@ -2,18 +2,19 @@ import { motion, type Variants } from "framer-motion";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
-import employee1 from "../assets/employee/3D7A5288-2.webp";
-import employee2 from "../assets/employee/3D7A5290-2.webp";
+import employee1 from "../assets/employee/employee1.webp";
+import employee2 from "../assets/employee/employee2.webp";
 import tommie from "../assets/employee/tommie.webp";
 import storeFront from "../assets/gallery/rpm-storefront.webp";
 
+// Single reusable variant — used only where animation genuinely adds value
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: (i = 0) => ({
+  hidden: { opacity: 0, y: 24 },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
-  }),
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const values = [
@@ -36,7 +37,7 @@ const values = [
 
 const team = [
   {
-    title: "Tommie",
+    title: "Tommie Puck",
     role: "Boss",
     description: "Supervises RPM",
     image: tommie,
@@ -58,22 +59,18 @@ const team = [
 export default function About() {
   return (
     <div className="text-white overflow-x-hidden">
+      {/* ── PAGE HEADER ── */}
       <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
         <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00f0ff]/10 blur-[120px] rounded-full" />
 
-        <motion.p
-          initial={{ opacity: 0, letterSpacing: "0.4em" }}
-          animate={{ opacity: 1, letterSpacing: "0.25em" }}
-          transition={{ duration: 0.8 }}
-          className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono"
-        >
+        <p className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
           Who we are
-        </motion.p>
+        </p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
           className="text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter"
           style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
         >
@@ -83,54 +80,15 @@ export default function About() {
           </span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide"
-        >
+        <p className="mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide">
           A team built on precision, passion, and performance.
-        </motion.p>
+        </p>
       </div>
-      {/* ── PAGE HEADER ── */}
-      {/* <div className="relative pt-36 pb-20 px-8 md:px-16 overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[260px] bg-[#00f0ff]/8 blur-[120px] rounded-full" />
-
-        <div className="relative max-w-[1400px] mx-auto md:px-16">
-          <motion.p
-            initial={{ opacity: 0, letterSpacing: "0.5em" }}
-            animate={{ opacity: 1, letterSpacing: "0.22em" }}
-            transition={{ duration: 0.9 }}
-            className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-4"
-          >
-            Who we are
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            About <span className="text-[#00f0ff]">RPM</span>
-            <span className="font-rocksalt text-[#9d9d9b] text-4xl md:text-5xl ml-3">
-              nyc
-            </span>
-          </motion.h1>
-        </div>
-      </div> */}
 
       {/* ── OUR STORY ── */}
-      <section className="max-w-[1400px] mx-auto px-8 md:px-16 pb-32">
+      <section className="max-w-[1400px] mx-auto px-4 md:px-16 pb-32">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="flex-1 relative"
-          >
+          <div className="flex-1 relative">
             <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent" />
             <img
               src={storeFront}
@@ -138,7 +96,6 @@ export default function About() {
               className="relative rounded-2xl w-full h-auto object-cover"
               draggable="false"
             />
-            {/* floating badge */}
             <div className="absolute -bottom-5 -right-5 bg-[#111] border border-white/10 rounded-xl px-5 py-4 hidden md:block">
               <p
                 className="text-3xl font-black text-[#00f0ff] leading-none"
@@ -150,16 +107,9 @@ export default function About() {
                 Years in NYC
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex-1 space-y-6"
-          >
+          <div className="flex-1 space-y-6">
             <div>
               <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
                 Our Story
@@ -205,20 +155,14 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ── VALUES ── */}
       <section className="border-t border-b border-white/[0.06] bg-[#0c0c0c]">
         <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-28">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="mb-14"
-          >
+          <div className="mb-14">
             <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
               What drives us
             </p>
@@ -228,17 +172,12 @@ export default function About() {
             >
               Our Values
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.06]">
-            {values.map((item, i) => (
-              <motion.div
+            {values.map((item) => (
+              <div
                 key={item.number}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={i}
-                variants={fadeUp}
                 className="bg-[#0c0c0c] p-10 group hover:bg-[#111] transition-colors duration-300"
               >
                 <span
@@ -257,7 +196,7 @@ export default function About() {
                 <p className="mt-2 text-gray-400 text-sm leading-relaxed">
                   {item.body}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -265,13 +204,7 @@ export default function About() {
 
       {/* ── MEET THE TEAM ── */}
       <section className="max-w-[1400px] mx-auto px-8 md:px-16 py-28">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="mb-14"
-        >
+        <div className="mb-14">
           <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
             The people behind the work
           </p>
@@ -281,26 +214,18 @@ export default function About() {
           >
             Meet the Team
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member, i) => (
-            <motion.div
+            <Card
               key={`${member.title}-${i}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={i}
-              variants={fadeUp}
-            >
-              <Card
-                title={member.title}
-                role={member.role}
-                description={member.description}
-                image={member.image}
-                variant="employee"
-              />
-            </motion.div>
+              title={member.title}
+              role={member.role}
+              description={member.description}
+              image={member.image}
+              variant="employee"
+            />
           ))}
         </div>
       </section>
@@ -309,13 +234,7 @@ export default function About() {
       <div className="relative border-t border-white/[0.06] py-28 px-8 text-center overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00f0ff]/5 to-transparent" />
         <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#00f0ff]/8 blur-[100px] rounded-full" />
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="relative"
-        >
+        <div className="relative">
           <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-4">
             Ready to come in?
           </p>
@@ -334,7 +253,7 @@ export default function About() {
               →
             </span>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

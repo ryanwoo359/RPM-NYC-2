@@ -44,6 +44,13 @@ const serviceCategories = [
           "Oil, filters, fluids — factory intervals or custom schedules.",
         link: "#",
       },
+      {
+        title: "ECU Diagnostics",
+        image: ecuTuning,
+        description:
+          "Full OBD-II scanning and fault code analysis across all modules.",
+        link: "#",
+      },
     ],
   },
   {
@@ -103,62 +110,8 @@ const serviceCategories = [
     ],
   },
   {
-    id: "drivetrain",
-    label: "04",
-    title: "Engine & Drivetrain",
-    tagline: "More power. More control. No compromises.",
-    services: [
-      {
-        title: "Turbo & Supercharger",
-        image: person,
-        description:
-          "Forced induction installs and full boost management systems.",
-        link: "#",
-      },
-      {
-        title: "Transmission Service",
-        image: person,
-        description: "Manual, auto, and DCT servicing, rebuilds, and swaps.",
-        link: "#",
-      },
-      {
-        title: "Differential Work",
-        image: person,
-        description: "LSD installs, fluid changes, and differential rebuilds.",
-        link: "#",
-      },
-    ],
-  },
-  {
-    id: "exhaust",
-    label: "05",
-    title: "Exhaust & Sound",
-    tagline: "Let them hear you coming.",
-    services: [
-      {
-        title: "Cat-Back Exhaust",
-        image: person,
-        description: "Performance cat-back systems for maximum flow and tone.",
-        link: "#",
-      },
-      {
-        title: "Custom Fabrication",
-        image: person,
-        description:
-          "One-off stainless exhaust built specifically for your chassis.",
-        link: "#",
-      },
-      {
-        title: "Headers & Downpipes",
-        image: person,
-        description: "Upgrade your manifold for better scavenging and power.",
-        link: "#",
-      },
-    ],
-  },
-  {
     id: "wheels",
-    label: "06",
+    label: "04",
     title: "Wheels, Tires & Alignment",
     tagline: "The four patches of rubber that matter most.",
     services: [
@@ -185,7 +138,7 @@ const serviceCategories = [
   },
   {
     id: "appearance",
-    label: "07",
+    label: "05",
     title: "Appearance & Protection",
     tagline: "Looks as sharp as it runs.",
     services: [
@@ -211,34 +164,6 @@ const serviceCategories = [
       },
     ],
   },
-  {
-    id: "fabrication",
-    label: "08",
-    title: "Custom Fabrication",
-    tagline: "If it doesn't exist, we build it.",
-    services: [
-      {
-        title: "Roll Cage & Bars",
-        image: person,
-        description:
-          "DOM tubing cages and half cages for track and safety use.",
-        link: "#",
-      },
-      {
-        title: "Custom Brackets & Mounts",
-        image: person,
-        description:
-          "One-off fabricated solutions for engine swaps and builds.",
-        link: "#",
-      },
-      {
-        title: "Intercooler Piping",
-        image: person,
-        description: "Mandrel-bent charge piping in aluminum or stainless.",
-        link: "#",
-      },
-    ],
-  },
 ];
 
 const fadeUp: Variants = {
@@ -252,7 +177,7 @@ const fadeUp: Variants = {
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-[#080808] text-white">
+    <div className="bg-[#080808] text-white">
       {/* ── HERO BANNER ── */}
       <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
         <div
@@ -290,8 +215,8 @@ export default function Services() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide"
         >
-          Eight categories. Every service your vehicle needs — from a routine
-          oil change to a full custom build.
+          Five categories. Every service your vehicle needs — from a routine oil
+          change to a full custom build.
         </motion.p>
       </div>
 
