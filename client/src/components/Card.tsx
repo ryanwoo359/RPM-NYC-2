@@ -22,7 +22,7 @@ type CardProps = ServiceCardProps | EmployeeCardProps;
 
 function ServiceCard({ title, description, image, link }: ServiceCardProps) {
   return (
-    <div className="group relative w-full overflow-hidden rounded-2xl bg-[#0a0a0a] shadow-xl">
+    <div className="group relative grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-2xl bg-[#0a0a0a] shadow-xl">
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -33,23 +33,24 @@ function ServiceCard({ title, description, image, link }: ServiceCardProps) {
           draggable="false"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        {/* dark vignette over image */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/30 to-transparent" />
       </div>
 
-      {/* Content block */}
-      <div className="relative px-5 pb-6 pt-4">
-        {/* animated accent line */}
-        <div className="mb-3 h-px w-8 bg-[#00f0ff] transition-all duration-500 group-hover:w-14" />
-
-        <h3 className="text-lg font-bold uppercase tracking-widest text-white sm:text-xl">
+      {/* Content */}
+      <div className="grid h-full grid-rows-[auto_1fr_auto] px-5 pb-6 pt-4">
+        <h3
+          className="font-bold uppercase tracking-widest text-white"
+          style={{ fontSize: "clamp(0.65rem, 3.5vw, 1.25rem)" }}
+        >
           {title}
         </h3>
 
-        {description && (
+        {description ? (
           <p className="mt-2 text-sm leading-relaxed text-gray-400">
             {description}
           </p>
+        ) : (
+          <div />
         )}
 
         {link && (
@@ -70,40 +71,40 @@ function ServiceCard({ title, description, image, link }: ServiceCardProps) {
 
 function EmployeeCard({ title, description, image, role }: EmployeeCardProps) {
   return (
-    <div className="group relative w-full overflow-hidden rounded-xl bg-[#0f0f0f] shadow-md transition-transform duration-300 hover:scale-105">
-      {/* Image */}
+    <div className="group relative w-full overflow-hidden bg-[#0f0f0f]">
+      {/* Image — rendered in black & white */}
       <div className="relative aspect-[2/3]">
         <img
           src={image}
           alt={title}
           decoding="async"
-          loading="lazy"
           draggable="false"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
         />
       </div>
 
-      {/* Hover overlay */}
+      {/* Text overlay — always visible, accent color reveals on hover */}
       <div
         className="
           absolute bottom-0 left-0 flex h-[45%] w-full
-          flex-col items-center justify-end
+          flex-col justify-end
           bg-gradient-to-t from-black/90 via-black/70 to-transparent
-          p-4 opacity-100 transition-all duration-300
-          sm:translate-y-6 sm:opacity-0
-          sm:group-hover:translate-y-0 sm:group-hover:opacity-100
-          sm:p-6
+          p-4 sm:p-6
         "
       >
-        <h3 className="text-lg font-bold text-white sm:text-xl">{title}</h3>
+        <h3 className="text-lg font-bold text-white sm:text-xl uppercase">
+          {title}
+        </h3>
         {role && (
-          <p className="mt-1 text-xs text-[#00f0ff] sm:text-sm">{role}</p>
+          <p className="mt-1 text-sm text-gray-400 transition-colors duration-300 group-hover:text-[#00f0ff] uppercase">
+            {role}
+          </p>
         )}
-        {description && (
+        {/* {description && (
           <p className="mt-2 text-center text-xs text-gray-300 sm:text-sm">
             {description}
           </p>
-        )}
+        )} */}
       </div>
     </div>
   );
